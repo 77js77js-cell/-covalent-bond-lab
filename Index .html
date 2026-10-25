@@ -1,0 +1,94 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><title>مختبر بناء الروابط</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}body{margin:0;background:#faf8f3;color:#34414a;font-family:-apple-system,Tahoma,Arial;border-top:6px solid #c69d4a}
+header{padding:14px 22px;background:#fff;display:flex;align-items:center;justify-content:space-between;gap:15px;border-bottom:1px solid #eee8de}
+h1{margin:0;font-size:28px}.sub{color:#85817b;font-size:14px}.groups{display:flex;gap:7px;flex-wrap:wrap}.groups button,.btn{font:inherit;border:1px solid #ddd5c8;background:white;border-radius:13px;padding:8px 13px;color:#34414a}.groups .on{background:#c69d4a;color:white}
+main{display:grid;grid-template-columns:260px 1fr;gap:14px;padding:14px;direction:ltr;height:calc(100vh - 100px)}aside,.lab{background:#fff;border:1px solid #e2ddd4;border-radius:20px}
+aside{direction:rtl;padding:14px;overflow:auto}.mission{text-align:center;background:#fbf2d5;border-radius:16px;padding:10px}.mission b{font-size:28px}.steps{font-size:15px;line-height:1.7;margin:10px 0}.rule{background:#e7f3f7;border-radius:13px;padding:8px;text-align:center;font-weight:700}
+.palette{display:flex;justify-content:center;gap:9px;margin-top:12px;flex-wrap:wrap}.sample{position:relative!important;left:auto!important;top:auto!important;transform:none!important;width:50px!important;height:50px!important;font-size:21px!important;box-shadow:none!important}.bond.sample{width:60px!important;height:12px!important}
+.lab{position:relative;overflow:hidden}.top{position:absolute;z-index:20;top:12px;left:12px;right:12px;display:flex;justify-content:space-between}.actions{display:flex;gap:7px}.btn.dark{background:#34414a;color:white}.status{border:1px solid #ddd5c8;border-radius:13px;padding:8px 12px;background:white;font-weight:700}
+#board{position:absolute;inset:64px 18px 70px 18px;border:2px dashed #eee5d7;border-radius:18px;background:#fffdf9}
+.hint{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#d0c8bc;font-size:25px;font-weight:700;pointer-events:none}
+.atom,.bond,.electron{position:absolute;touch-action:none;user-select:none;-webkit-user-select:none;display:flex;align-items:center;justify-content:center;z-index:4;box-shadow:0 4px 11px #0002}.atom{width:72px;height:72px;border-radius:50%;font-size:29px;font-weight:800;border:2px solid white}.H{background:#fff;border-color:#ddd}.C{background:#e4e4e4}.N{background:#e8dff2}.O{background:#f5e0e5}.S{background:#f8eac7}.F{background:#e0f0e2}.Cl{background:#e1eee7}.bond{width:76px;height:16px;background:#303638;border-radius:8px;z-index:3;transform-origin:center}
+.electron{width:18px;height:18px;border-radius:50%;background:#4f7f9a;border:2px solid white;box-shadow:0 2px 6px #0002;z-index:6;touch-action:none}
+.electron.sample{width:24px!important;height:24px!important;background:#4f7f9a!important;border:2px solid white!important}
+.shared{position:absolute;min-width:46px;height:28px;border-radius:14px;background:#e7f3f7;color:#365d73;font-size:25px;font-weight:900;letter-spacing:4px;display:flex;align-items:center;justify-content:center;z-index:7;touch-action:none;user-select:none;-webkit-user-select:none;box-shadow:0 3px 8px #0002}
+.valence{font-size:12px;text-align:center;color:#777;margin-top:6px}
+.selected-piece{outline:4px solid #c69d4a!important;outline-offset:4px}
+.editbar{position:absolute;z-index:30;bottom:14px;right:18px;display:flex;gap:8px;flex-wrap:wrap}
+.editbar button{font:inherit;border:1px solid #ddd5c8;background:white;border-radius:12px;padding:8px 12px;color:#34414a}
+.editbar button:disabled{opacity:.4}
+.editbar .delete{background:#f8e8e8}
+#result{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);padding:10px 18px;border-radius:14px;font-weight:800;display:none;z-index:25;text-align:center}.ok{display:block!important;background:#e6f3e5;border:1px solid #bcd9ba}.bad{display:block!important;background:#f8e8e8;border:1px solid #e2bcbc}
+@media(max-width:850px){main{grid-template-columns:230px 1fr}h1{font-size:24px}}
+</style></head><body>
+<header><div><h1>مختبر بناء الروابط التساهمية</h1><div class="sub">اختاري مجموعتك • رتّبي الذرات • صِلي بينها • تحققي</div></div><div class="groups" id="groups"></div></header>
+<main><aside><div class="mission"><div class="sub">مهمة مجموعتك</div><b id="formula"></b><div id="idea" class="sub"></div></div>
+<div class="steps"><b>المطلوب</b><br>١. اضغطي على الذرات لإضافتها.<br>٢. اسحبي كل ذرة إلى <b>دائرة مكانها</b> داخل مساحة البناء.<br>٣. أضيفي إلكترونات التكافؤ حول الذرات، ثم انقلي إلكترونًا من كل ذرة إلى منطقة المشاركة بينهما.<br>٤. بعد تكوين <b>زوج إلكتروني مشترك ••</b>، اضغطي عليه لتحويله إلى <b>رابطة خطية —</b>.<br>٥. إذا أخطأتِ: حددي القطعة ثم استخدمي <b>حذف المحدد</b>. ولتغيير اتجاه الرابطة استخدمي زري <b>↺ ↻</b>.<br>٦. اضغطي <b>تحققي</b>.</div>
+<div class="rule">ابدئي بتمثيل لويس: وزّعي إلكترونات التكافؤ أولًا. بعد ذلك كوّني كل زوج مشترك •• بين ذرتين، ثم حوّليه إلى رابطة خطية —.</div>
+<div class="valence" id="valenceHint"></div><div class="palette" id="palette"></div></aside>
+<section class="lab"><div class="top"><div class="status" id="status">الذرات: ٠ | الروابط: ٠</div><div class="actions"><button class="btn" id="reset">إعادة</button><button class="btn dark" id="check">تحققي</button></div></div><div id="board"><div class="hint" id="hint">ابني الجزيء هنا</div></div>
+<div class="editbar">
+<button type="button" id="rotateL" disabled>↺ تدوير</button>
+<button type="button" id="rotateR" disabled>↻ تدوير</button>
+<button type="button" id="deletePiece" class="delete" disabled>حذف المحدد</button>
+</div><div id="result"></div></section></main>
+<script>
+const M=[
+{g:1,f:"CH₄",i:"المجموعة 14",a:{C:1,H:4},v:{C:4,H:1},b:4,layout:[["C",50,50],["H",50,17],["H",50,83],["H",18,50],["H",82,50]]},
+{g:2,f:"NH₃",i:"المجموعة 15",a:{N:1,H:3},v:{N:5,H:1},b:3,layout:[["N",50,50],["H",50,17],["H",22,73],["H",78,73]]},
+{g:3,f:"H₂O",i:"المجموعة 16",a:{O:1,H:2},v:{O:6,H:1},b:2,layout:[["O",50,50],["H",22,68],["H",78,68]]},
+{g:4,f:"H₂S",i:"المجموعة 16",a:{S:1,H:2},v:{S:6,H:1},b:2,layout:[["S",50,50],["H",22,68],["H",78,68]]},
+{g:5,f:"HF",i:"المجموعة 17",a:{H:1,F:1},v:{H:1,F:7},b:1,layout:[["H",28,50],["F",72,50]]},
+{g:6,f:"HCl",i:"المجموعة 17",a:{H:1,Cl:1},v:{H:1,Cl:7},b:1,layout:[["H",28,50],["Cl",72,50]]}
+];let cur=0,P=[],selected=null;const $=x=>document.getElementById(x),B=$("board");
+function selectPiece(o){
+ if(selected&&selected.e)selected.e.classList.remove("selected-piece");
+ selected=o||null;
+ if(selected&&selected.e)selected.e.classList.add("selected-piece");
+ $("deletePiece").disabled=!selected;
+ $("rotateL").disabled=!selected||selected.t!=="bond";
+ $("rotateR").disabled=!selected||selected.t!=="bond";
+}
+function removeSelected(){
+ if(!selected)return;
+ selected.e.remove();P=P.filter(x=>x!==selected);selected=null;
+ $("deletePiece").disabled=true;$("rotateL").disabled=true;$("rotateR").disabled=true;stat();
+}
+function rotateSelected(delta){
+ if(!selected||selected.t!=="bond")return;
+ selected.angle=((selected.angle||0)+delta+360)%360;
+ selected.e.style.transform="rotate("+selected.angle+"deg)";
+}
+
+M.forEach((m,i)=>{let q=document.createElement("button");q.textContent="المجموعة "+m.g;q.onclick=()=>load(i);$("groups").appendChild(q)});
+function load(i){cur=i;[...$("groups").children].forEach((x,j)=>x.classList.toggle("on",i===j));$("formula").textContent=M[i].f;$("idea").textContent=M[i].i;clear();palette();targets()}
+function clear(){selectPiece(null);P.forEach(x=>x.e.remove());P=[];$("result").className="";$("result").style.display="none";stat();$("hint").style.display="flex";[...B.querySelectorAll(".target")].forEach(x=>x.remove())}
+function targets(){let r=B.getBoundingClientRect();M[cur].layout.forEach(([s,x,y])=>{let t=document.createElement("div");t.className="target";t.dataset.sym=s;t.style.cssText=`position:absolute;width:84px;height:84px;border:2px dashed #d9d0c2;border-radius:50%;left:calc(${x}% - 42px);top:calc(${y}% - 42px);display:flex;align-items:center;justify-content:center;color:#d7d0c6;font-size:13px`;t.textContent=s;B.appendChild(t)})}
+function palette(){$("palette").innerHTML="";
+$("valenceHint").textContent="إلكترونات التكافؤ: "+Object.entries(M[cur].v).map(([k,v])=>k+" = "+v).join("   •   ");
+Object.keys(M[cur].a).forEach(s=>{let e=document.createElement("div");e.className="atom "+s+" sample";e.textContent=s;e.onclick=()=>spawn("atom",s);$("palette").appendChild(e)});
+let d=document.createElement("div");d.className="electron sample";d.title="إلكترون تكافؤ";d.onclick=()=>spawn("electron","e");$("palette").appendChild(d);
+let sp=document.createElement("button");sp.type="button";sp.className="btn";sp.textContent="•• زوج مشترك";sp.title="أضيفي زوجًا مشتركًا بعد توزيع الإلكترونات";sp.onclick=()=>spawn("shared","••");$("palette").appendChild(sp)}
+function spawn(t,s){let e=document.createElement("div");
+e.className=t==="atom"?"atom "+s:(t==="electron"?"electron":(t==="shared"?"shared":"bond"));
+if(t==="atom"||t==="shared")e.textContent=s;B.appendChild(e);let n=P.length;e.style.left=(20+(n%8)*16)+"px";e.style.top=(20+(n%6)*14)+"px";
+let o={t,s,e,angle:0};P.push(o);drag(o);
+e.addEventListener("pointerdown",()=>selectPiece(o));
+if(t==="shared"){e.addEventListener("click",()=>{if(o.moved)return;o.t="bond";o.s="—";e.className="bond selected-piece";e.textContent="";o.angle=0;e.style.transform="rotate(0deg)";selectPiece(o);stat()})}
+$("hint").style.display="none";stat()}
+function drag(o){let on=false,ox=0,oy=0,sx=0,sy=0;o.e.addEventListener("pointerdown",v=>{on=true;o.moved=false;o.e.setPointerCapture(v.pointerId);let r=o.e.getBoundingClientRect();ox=v.clientX-r.left;oy=v.clientY-r.top;sx=v.clientX;sy=v.clientY;o.e.style.zIndex=10});o.e.addEventListener("pointermove",v=>{if(!on)return;if(Math.hypot(v.clientX-sx,v.clientY-sy)>8)o.moved=true;let b=B.getBoundingClientRect(),r=o.e.getBoundingClientRect(),x=v.clientX-b.left-ox,y=v.clientY-b.top-oy;x=Math.max(0,Math.min(b.width-r.width,x));y=Math.max(0,Math.min(b.height-r.height,y));o.e.style.left=x+"px";o.e.style.top=y+"px"});o.e.addEventListener("pointerup",()=>{on=false;if(o.t==="atom")snap(o);o.e.style.zIndex=o.t==="shared"?7:(o.t==="electron"?6:(o.t==="atom"?4:3))})}
+function snap(o){if(o.t!=="atom")return;let er=o.e.getBoundingClientRect(),cx=er.left+er.width/2,cy=er.top+er.height/2,best=null,bd=999;[...B.querySelectorAll(".target")].forEach(t=>{if(t.dataset.sym!==o.s)return;let tr=t.getBoundingClientRect(),d=Math.hypot(cx-(tr.left+tr.width/2),cy-(tr.top+tr.height/2));if(d<bd){bd=d;best=t}});if(best&&bd<90){let br=B.getBoundingClientRect(),tr=best.getBoundingClientRect();o.e.style.left=(tr.left-br.left+(tr.width-o.e.offsetWidth)/2)+"px";o.e.style.top=(tr.top-br.top+(tr.height-o.e.offsetHeight)/2)+"px"}}
+const ar=n=>String(n).replace(/\d/g,d=>"٠١٢٣٤٥٦٧٨٩"[d]);function stat(){$("status").textContent="الذرات: "+ar(P.filter(x=>x.t==="atom").length)+" | الإلكترونات: "+ar(P.filter(x=>x.t==="electron").length)+" | أزواج مشتركة: "+ar(P.filter(x=>x.t==="shared").length)+" | الروابط: "+ar(P.filter(x=>x.t==="bond").length)}
+function counts(){let c={};P.filter(x=>x.t==="atom").forEach(x=>c[x.s]=(c[x.s]||0)+1);return c}
+$("check").onclick=()=>{let m=M[cur],c=counts(),bn=P.filter(x=>x.t==="bond").length,ok=true;new Set([...Object.keys(m.a),...Object.keys(c)]).forEach(k=>{if((m.a[k]||0)!==(c[k]||0))ok=false});if(!ok)return bad("راجعي عدد الذرات في الصيغة "+m.f);
+let neededE=Object.entries(m.a).reduce((sum,[k,n])=>sum+n*m.v[k],0), en=P.filter(x=>x.t==="electron").length, sh=P.filter(x=>x.t==="shared").length;
+if(en + 2*sh + 2*bn < neededE)return bad("ما زالت بعض إلكترونات التكافؤ غير ممثلة.");
+if(sh>0)return bad("حوّلي كل زوج إلكتروني مشترك •• إلى رابطة خطية — قبل التحقق.");
+if(bn!==m.b)return bad("راجعي عدد الروابط؛ المطلوب "+ar(m.b));let atoms=P.filter(x=>x.t==="atom"),targets=[...B.querySelectorAll(".target")];for(let a of atoms){let er=a.e.getBoundingClientRect(),cx=er.left+er.width/2,cy=er.top+er.height/2,near=targets.some(t=>t.dataset.sym===a.s&&(()=>{let tr=t.getBoundingClientRect();return Math.hypot(cx-(tr.left+tr.width/2),cy-(tr.top+tr.height/2))<30})());if(!near)return bad("بعض الذرات ليست في أماكنها الصحيحة. اسحبيها إلى الدوائر المتقطعة.")}$("result").className="ok";$("result").textContent="✓ ممتاز! بناء صحيح — عدد الروابط الأحادية: "+ar(m.b)}
+function bad(t){$("result").className="bad";$("result").textContent="حاولي مرة أخرى: "+t}$("reset").onclick=()=>load(cur);
+$("deletePiece").onclick=removeSelected;
+$("rotateL").onclick=()=>rotateSelected(-45);
+$("rotateR").onclick=()=>rotateSelected(45);
+load(0);
+</script></body></html>
