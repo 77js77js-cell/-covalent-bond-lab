@@ -1,0 +1,11 @@
+{
+  "name": "مختبر بناء الروابط التساهمية",
+  "short_name": "مختبر الروابط",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#faf8f3",
+  "theme_color": "#faf8f3"
+}

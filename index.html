@@ -21,7 +21,12 @@ aside{direction:rtl;padding:14px;overflow:auto}.mission{text-align:center;backgr
 .editbar .delete{background:#f8e8e8}
 #result{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);padding:10px 18px;border-radius:14px;font-weight:800;display:none;z-index:25;text-align:center}.ok{display:block!important;background:#e6f3e5;border:1px solid #bcd9ba}.bad{display:block!important;background:#f8e8e8;border:1px solid #e2bcbc}
 @media(max-width:850px){main{grid-template-columns:230px 1fr}h1{font-size:24px}}
-</style></head><body>
+</style><link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#faf8f3">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="مختبر الروابط">
+</head><body>
 <header><div><h1>مختبر بناء الروابط التساهمية</h1><div class="sub">اختاري مجموعتك • رتّبي الذرات • صِلي بينها • تحققي</div></div><div class="groups" id="groups"></div></header>
 <main><aside><div class="mission"><div class="sub">مهمة مجموعتك</div><b id="formula"></b><div id="idea" class="sub"></div></div>
 <div class="steps"><b>المطلوب</b><br>١. اضغطي على الذرات لإضافتها.<br>٢. اسحبي كل ذرة إلى <b>دائرة مكانها</b> داخل مساحة البناء.<br>٣. مثّلي إلكترونات التكافؤ حول الذرات بنفسك، ثم ضعي إلكترونًا من كل ذرة بين الذرتين لتكوين زوج إلكتروني مشترك ••.<br>٤. بعد تكوين <b>زوج إلكتروني مشترك ••</b>، اضغطي عليه لتحويله إلى <b>رابطة خطية —</b>.<br>٥. إذا أخطأتِ: حددي القطعة ثم استخدمي <b>حذف المحدد</b>. ولتغيير اتجاه الرابطة استخدمي زري <b>↺ ↻</b>.<br>٦. اضغطي <b>تحققي</b>.</div>
@@ -117,4 +122,11 @@ $("deletePiece").onclick=removeSelected;
 $("rotateL").onclick=()=>rotateSelected(-45);
 $("rotateR").onclick=()=>rotateSelected(45);
 load(0);
-</script></body></html>
+</script><script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js").catch(()=>{});
+  });
+}
+</script>
+</body></html>
